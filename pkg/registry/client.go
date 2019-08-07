@@ -26,7 +26,7 @@ import (
 )
 
 type Client interface {
-	Copy(source image.Name, sourceKeyFile string, target image.Name, targetKeyFile string) (image.Digest, int64, error)
+	Copy(source image.Name, sourceKeyEnv string, target image.Name, targetKeyEnv string) (image.Digest, int64, error)
 }
 
 type client struct {
@@ -42,8 +42,8 @@ func NewRegistryClient() Client {
 	}
 }
 
-func (r *client) Copy(source image.Name, sourceKeyFile string, target image.Name, targetKeyFile string) (image.Digest, int64, error) {
-	img, err := r.readRemoteImage(source, auth.ServiceAccountKeychain{KeyFile: sourceKeyFile})
+func (r *client) Copy(source image.Name, sourceKeyEnv string, target image.Name, targetKeyEnv string) (image.Digest, int64, error) {
+	img, err := r.readRemoteImage(source, auth.ServiceAccountKeychain{KeyEnv: sourceKeyEnv})
 	if err != nil {
 		return image.EmptyDigest, 0, fmt.Errorf("failed to read image %v: %v", source, err)
 	}
@@ -53,7 +53,7 @@ func (r *client) Copy(source image.Name, sourceKeyFile string, target image.Name
 		return image.EmptyDigest, 0, fmt.Errorf("failed to read digest of image %v: %v", source, err)
 	}
 
-	err = r.writeRemoteImage(img, target, auth.ServiceAccountKeychain{KeyFile: targetKeyFile})
+	err = r.writeRemoteImage(img, target, auth.ServiceAccountKeychain{KeyEnv: targetKeyEnv})
 	if err != nil {
 		return image.EmptyDigest, 0, fmt.Errorf("failed to write image %v: %v", target, err)
 	}

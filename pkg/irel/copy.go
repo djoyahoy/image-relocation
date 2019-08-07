@@ -28,7 +28,7 @@ func init() { Root.AddCommand(newCmdCopy()) }
 
 func newCmdCopy() *cobra.Command {
 	return &cobra.Command{
-		Use:     "copy SRC_REF SRC_JSON_KEY DST_REF DST_JSON_KEY",
+		Use:     "copy SRC_REF SRC_ENV_KEY DST_REF DST_ENV_KEY",
 		Aliases: []string{"cp"},
 		Short:   "Efficiently copy a remote image from one repository to another",
 		Args:    cobra.ExactArgs(4),
@@ -37,7 +37,7 @@ func newCmdCopy() *cobra.Command {
 }
 
 func copy(cmd *cobra.Command, args []string) {
-	srcStr, srcKeyFile, dstStr, dstKeyFile := args[0], args[1], args[2], args[3]
+	srcStr, srcKeyEnv, dstStr, dstKeyEnv := args[0], args[1], args[2], args[3]
 	src, err := image.NewName(srcStr)
 	if err != nil {
 		log.Fatalf("invalid reference %q: %v", srcStr, err)
@@ -48,7 +48,7 @@ func copy(cmd *cobra.Command, args []string) {
 	}
 
 	regClient := registry.NewRegistryClient()
-	dig, _, err := regClient.Copy(src, srcKeyFile, dst, dstKeyFile)
+	dig, _, err := regClient.Copy(src, srcKeyEnv, dst, dstKeyEnv)
 	if err != nil {
 		log.Fatalf("copy failed: %v", err)
 	}
