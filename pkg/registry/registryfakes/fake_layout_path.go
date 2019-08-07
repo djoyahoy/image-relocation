@@ -6,7 +6,7 @@ import (
 
 	v1 "github.com/google/go-containerregistry/pkg/v1"
 	layout "github.com/google/go-containerregistry/pkg/v1/layout"
-	registry "github.com/pivotal/image-relocation/pkg/registry"
+	registry "github.com/djoyahoy/image-relocation/pkg/registry"
 )
 
 type FakeLayoutPath struct {

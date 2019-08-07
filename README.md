@@ -1,6 +1,6 @@
 # Docker/OCI image relocation
 
-[![GoDoc](https://godoc.org/github.com/pivotal/image-relocation?status.svg)](https://godoc.org/github.com/pivotal/image-relocation)
+[![GoDoc](https://godoc.org/github.com/djoyahoy/image-relocation?status.svg)](https://godoc.org/github.com/djoyahoy/image-relocation)
 [![Go Report Card](https://goreportcard.com/badge/pivotal/image-relocation)](https://goreportcard.com/report/pivotal/image-relocation)
 [![Build Status](https://dev.azure.com/projectriff/pivotal-image-relocation/_apis/build/status/pivotal.image-relocation?branchName=master)](https://dev.azure.com/projectriff/pivotal-image-relocation/_build/latest?definitionId=11&branchName=master)
 [![codecov](https://codecov.io/gh/pivotal/image-relocation/branch/master/graph/badge.svg)](https://codecov.io/gh/pivotal/image-relocation)
@@ -65,7 +65,7 @@ The Go packages provided by this repository include:
  * a "path mapping" utility for relocating image names
  * a registry package for copying images between repositories and between repositories and an [OCI image layout](https://github.com/opencontainers/image-spec/blob/master/image-layout.md) on disk.
 
-For details, please refer to the [package documentation](https://godoc.org/github.com/pivotal/image-relocation).
+For details, please refer to the [package documentation](https://godoc.org/github.com/djoyahoy/image-relocation).
 
 ## Command line interface
 

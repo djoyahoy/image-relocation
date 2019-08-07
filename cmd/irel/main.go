@@ -18,7 +18,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/pivotal/image-relocation/pkg/irel"
+	"github.com/djoyahoy/image-relocation/pkg/irel"
 	"os"
 )
 

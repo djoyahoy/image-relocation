@@ -1,4 +1,4 @@
-module github.com/pivotal/image-relocation
+module github.com/djoyahoy/image-relocation
 
 require (
 	github.com/docker/distribution v2.7.0+incompatible

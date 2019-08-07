@@ -23,11 +23,11 @@ import (
 	"github.com/google/go-containerregistry/pkg/name"
 	v1 "github.com/google/go-containerregistry/pkg/v1"
 	"github.com/google/go-containerregistry/pkg/v1/remote"
-	"github.com/pivotal/image-relocation/pkg/image"
+	"github.com/djoyahoy/image-relocation/pkg/image"
 )
 
-func readRemoteImage(n image.Name) (v1.Image, error) {
-	auth, err := resolve(n)
+func readRemoteImage(n image.Name, keychain authn.Keychain) (v1.Image, error) {
+	auth, err := resolve(n, keychain)
 	if err != nil {
 		return nil, err
 	}
@@ -47,8 +47,8 @@ func readRemoteImage(n image.Name) (v1.Image, error) {
 	return remote.Image(ref, remote.WithAuth(auth))
 }
 
-func writeRemoteImage(i v1.Image, n image.Name) error {
-	auth, err := resolve(n)
+func writeRemoteImage(i v1.Image, n image.Name, keychain authn.Keychain) error {
+	auth, err := resolve(n, keychain)
 	if err != nil {
 		return err
 	}
@@ -61,11 +61,11 @@ func writeRemoteImage(i v1.Image, n image.Name) error {
 	return remote.Write(ref, i, auth, http.DefaultTransport)
 }
 
-func resolve(n image.Name) (authn.Authenticator, error) {
+func resolve(n image.Name, keychain authn.Keychain) (authn.Authenticator, error) {
 	repo, err := name.NewRepository(n.WithoutTagOrDigest().String(), name.WeakValidation)
 	if err != nil {
 		return nil, err
 	}
 
-	return authn.DefaultKeychain.Resolve(repo.Registry)
+	return keychain.Resolve(repo.Registry)
 }

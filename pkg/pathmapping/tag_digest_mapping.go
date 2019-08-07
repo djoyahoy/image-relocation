@@ -17,7 +17,7 @@
 package pathmapping
 
 import (
-	"github.com/pivotal/image-relocation/pkg/image"
+	"github.com/djoyahoy/image-relocation/pkg/image"
 )
 
 // FlattenRepoPathPreserveTagDigest maps the given Name to a new Name with a given repository prefix.

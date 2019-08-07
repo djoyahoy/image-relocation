@@ -19,8 +19,8 @@ package pathmapping_test
 import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/pivotal/image-relocation/pkg/image"
-	"github.com/pivotal/image-relocation/pkg/pathmapping"
+	"github.com/djoyahoy/image-relocation/pkg/image"
+	"github.com/djoyahoy/image-relocation/pkg/pathmapping"
 )
 
 var _ = Describe("FlattenRepoPath", func() {
